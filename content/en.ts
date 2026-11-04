@@ -122,6 +122,12 @@ export const en: Dict = {
           text: "The jury was very pleased with our motivation, our efficiency and above all our results.",
         },
       ],
+      gallery: [
+        { src: "/media/littobs-prototype.webp", w: 1200, h: 2133, caption: "3D-printed prototype of the descent system" },
+        { src: "/media/littobs-schema.webp", w: 1800, h: 1267, caption: "How the probe works: float, descent system, measuring instruments, anchor" },
+        { src: "/media/littobs-gantt.svg", w: 1844, h: 1296, caption: "Project schedule (Gantt chart) that I managed" },
+        { src: "/media/littobs-raci.webp", w: 2400, h: 1430, caption: "RACI matrix: who is responsible, accountable, consulted or informed" },
+      ],
     },
     {
       slug: "simulateur-vehicule",
@@ -159,6 +165,7 @@ export const en: Dict = {
     "Recently, I discovered rugby. After an individual sport, I am learning to play for a team.",
     "Finally, entrepreneurship motivates me: in the long run, I want to build projects with others, not just contribute to them.",
   ],
+  aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "With my artistic gymnastics team" },
   stats: [
     { value: "18 years", label: "of artistic gymnastics" },
     { value: "Champion", label: "of France, individual and team" },
