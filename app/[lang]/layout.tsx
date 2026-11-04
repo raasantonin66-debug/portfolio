@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import "@fontsource-variable/bricolage-grotesque/opsz.css";
+import "@fontsource-variable/jetbrains-mono";
 import "../globals.css";
+import Waves from "@/components/Waves";
 import { getDict, locales } from "@/content";
 
 export const dynamicParams = false;
@@ -34,7 +37,10 @@ export default async function RootLayout({
   if (!getDict(lang)) notFound();
   return (
     <html lang={lang}>
-      <body>{children}</body>
+      <body>
+        <Waves />
+        <div className="page">{children}</div>
+      </body>
     </html>
   );
 }
