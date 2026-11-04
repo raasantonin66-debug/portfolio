@@ -9,7 +9,7 @@ export type Project = {
   featured?: boolean;
   status?: string;
   blocks: { label: string; text: string }[];
-  media?: string;
+  gallery?: { src: string; w: number; h: number; caption: string }[];
 };
 
 export const fr = {
@@ -133,6 +133,12 @@ export const fr = {
           text: "Jury très satisfait de notre motivation, de notre efficacité et surtout des résultats.",
         },
       ],
+      gallery: [
+        { src: "/media/littobs-prototype.webp", w: 1200, h: 2133, caption: "Prototype du système de descente, imprimé en 3D" },
+        { src: "/media/littobs-schema.webp", w: 1800, h: 1267, caption: "Principe de la sonde : flotteur, système de descente, instruments de mesure, ancre" },
+        { src: "/media/littobs-gantt.svg", w: 1844, h: 1296, caption: "Planning du projet (diagramme de Gantt) que je pilotais" },
+        { src: "/media/littobs-raci.webp", w: 2400, h: 1430, caption: "Matrice RACI : qui réalise, approuve, est consulté ou informé" },
+      ],
     },
     {
       slug: "simulateur-vehicule",
@@ -170,6 +176,7 @@ export const fr = {
     "Récemment, j'ai découvert le rugby. Après un sport individuel, j'y apprends à jouer pour un collectif.",
     "Enfin, l'entrepreneuriat me motive : à terme, j'aimerais construire des projets avec d'autres, pas seulement y contribuer.",
   ],
+  aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Avec mon équipe de gymnastique artistique" },
   stats: [
     { value: "18 ans", label: "de gymnastique artistique" },
     { value: "Champion", label: "de France, en individuel et par équipe" },

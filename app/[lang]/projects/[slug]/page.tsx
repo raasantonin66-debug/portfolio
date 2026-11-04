@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Magnetic from "@/components/Magnetic";
+import Gallery from "@/components/Gallery";
 import WordsReveal from "@/components/WordsReveal";
 import { TLink } from "@/components/Transition";
 import { fr } from "@/content/fr";
@@ -61,6 +62,12 @@ export default async function ProjectPage({ params }: P) {
           </div>
         ))}
       </section>
+
+      {p.gallery && p.gallery.length > 0 && (
+        <section className="section">
+          <Gallery items={p.gallery} closeLabel={t.ui.close} />
+        </section>
+      )}
 
       <section className="section next-project">
         <p className="section-kicker">{t.ui.nextProject}</p>

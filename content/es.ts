@@ -122,6 +122,12 @@ export const es: Dict = {
           text: "El jurado quedó muy satisfecho con nuestra motivación, nuestra eficacia y sobre todo con los resultados.",
         },
       ],
+      gallery: [
+        { src: "/media/littobs-prototype.webp", w: 1200, h: 2133, caption: "Prototipo del sistema de descenso, impreso en 3D" },
+        { src: "/media/littobs-schema.webp", w: 1800, h: 1267, caption: "Principio de la sonda: flotador, sistema de descenso, instrumentos de medida, ancla" },
+        { src: "/media/littobs-gantt.svg", w: 1844, h: 1296, caption: "Planificación del proyecto (diagrama de Gantt) que yo dirigía" },
+        { src: "/media/littobs-raci.webp", w: 2400, h: 1430, caption: "Matriz RACI: quién realiza, aprueba, es consultado o informado" },
+      ],
     },
     {
       slug: "simulateur-vehicule",
@@ -159,6 +165,7 @@ export const es: Dict = {
     "Hace poco descubrí el rugby. Después de un deporte individual, aprendo a jugar para un equipo.",
     "Por último, me motiva el emprendimiento: a largo plazo quiero construir proyectos con otros, no solo contribuir a ellos.",
   ],
+  aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Con mi equipo de gimnasia artística" },
   stats: [
     { value: "18 años", label: "de gimnasia artística" },
     { value: "Campeón", label: "de Francia, individual y por equipos" },
