@@ -4,6 +4,9 @@ import "@fontsource-variable/bricolage-grotesque/opsz.css";
 import "@fontsource-variable/jetbrains-mono";
 import "../globals.css";
 import Waves from "@/components/Waves";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { TransitionProvider } from "@/components/Transition";
 import { getDict, locales } from "@/content";
 
 export const dynamicParams = false;
@@ -20,7 +23,7 @@ export async function generateMetadata({
   const t = getDict((await params).lang);
   if (!t) return {};
   return {
-    title: t.meta.title,
+    title: { default: t.meta.title, template: `%s · Antonin RAAS` },
     description: t.meta.description,
     alternates: { languages: { fr: "/fr", en: "/en", es: "/es" } },
   };
@@ -34,12 +37,20 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  if (!getDict(lang)) notFound();
+  const t = getDict(lang);
+  if (!t) notFound();
   return (
     <html lang={lang}>
       <body>
         <Waves />
-        <div className="page">{children}</div>
+        <div className="grain" aria-hidden />
+        <TransitionProvider greetings={["Bonjour", "Hello", "Hola", "Antonin RAAS"]}>
+          <Header t={t} />
+          <div className="page">
+            <main>{children}</main>
+            <Footer t={t} />
+          </div>
+        </TransitionProvider>
       </body>
     </html>
   );
