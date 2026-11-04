@@ -52,6 +52,13 @@ export function TransitionProvider({
       setLabel(text);
       setPhase("cover");
       window.setTimeout(() => router.push(href), COVER_MS);
+      // Filet de sécurité : si la page n'a pas changé à temps, on lève le
+      // rideau quand même pour ne jamais laisser le site bloqué.
+      window.setTimeout(() => {
+        if (pending.current !== href) return;
+        pending.current = null;
+        setPhase("reveal");
+      }, COVER_MS + 4000);
     },
     [pathname, phase, router]
   );
@@ -64,9 +71,16 @@ export function TransitionProvider({
     if (lenisRef.current) lenisRef.current.scrollTo(0, { immediate: true });
     else window.scrollTo(0, 0);
     setPhase("reveal");
+  }, [pathname, phase]);
+
+  // Fin du lever de rideau. Effet séparé : sinon le passage à « reveal »
+  // relance l'effet ci-dessus, dont le nettoyage annulait ce minuteur et
+  // laissait le site bloqué (plus aucun lien ne répondait).
+  useEffect(() => {
+    if (phase !== "reveal") return;
     const id = window.setTimeout(() => setPhase("idle"), REVEAL_MS);
     return () => window.clearTimeout(id);
-  }, [pathname, phase]);
+  }, [phase]);
 
   return (
     <TransitionCtx.Provider value={{ navigate }}>
@@ -118,6 +132,7 @@ export function TLink({
   label,
   className,
   children,
+  onClick,
   ...rest
 }: {
   href: string;
@@ -130,12 +145,13 @@ export function TLink({
     <a
       href={href}
       className={className}
+      {...rest}
       onClick={(e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        onClick?.(e);
+        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
         e.preventDefault();
         navigate(href, label);
       }}
-      {...rest}
     >
       {children}
     </a>
