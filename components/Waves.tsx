@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 
 // Fond animé : plusieurs ondes colorées qui traversent l'écran lentement.
 const LAYERS = [
-  { color: "76, 201, 240", amp: 38, len: 0.0024, speed: 0.22, y: 0.3, alpha: 0.16 },
-  { color: "155, 109, 255", amp: 52, len: 0.0017, speed: -0.15, y: 0.45, alpha: 0.14 },
-  { color: "242, 181, 68", amp: 30, len: 0.003, speed: 0.3, y: 0.62, alpha: 0.12 },
-  { color: "80, 209, 141", amp: 44, len: 0.002, speed: -0.2, y: 0.8, alpha: 0.1 },
+  { color: "76, 201, 240", amp: 38, len: 0.0024, speed: 0.22, y: 0.3, alpha: 0.2 },
+  { color: "155, 109, 255", amp: 52, len: 0.0017, speed: -0.15, y: 0.45, alpha: 0.18 },
+  { color: "242, 181, 68", amp: 30, len: 0.003, speed: 0.3, y: 0.62, alpha: 0.15 },
+  { color: "80, 209, 141", amp: 44, len: 0.002, speed: -0.2, y: 0.8, alpha: 0.13 },
 ];
 
 export default function Waves() {
