@@ -1,6 +1,7 @@
 import Pendulum from "./Pendulum";
 import Reveal from "./Reveal";
 import type { Dict } from "@/content/fr";
+import { locales } from "@/content";
 
 export default function Portfolio({ t }: { t: Dict }) {
   const { links } = t;
@@ -10,21 +11,31 @@ export default function Portfolio({ t }: { t: Dict }) {
         <a href="#top" className="brand">
           A<span>R</span>
         </a>
-        <nav aria-label="Navigation principale">
+        <nav aria-label={t.a11y.nav}>
           <a href="#projets">{t.nav.projects}</a>
           <a href="#competences">{t.nav.skills}</a>
           <a href="#apropos">{t.nav.about}</a>
           <a href="#contact">{t.nav.contact}</a>
         </nav>
-        <div className="langs" aria-label="Langue">
-          <span className="lang-active">FR</span>
+        <div className="langs" aria-label={t.a11y.lang}>
+          {locales.map((l) =>
+            l === t.lang ? (
+              <span key={l} className="lang-active" aria-current="page">
+                {l.toUpperCase()}
+              </span>
+            ) : (
+              <a key={l} href={`/${l}`} hrefLang={l}>
+                {l.toUpperCase()}
+              </a>
+            )
+          )}
         </div>
       </header>
 
       <main id="top">
         <section className="hero">
           <div className="hero-text">
-            <p className="eyebrow">SeaTech Toulon · Robotique & systèmes embarqués</p>
+            <p className="eyebrow">{t.eyebrow}</p>
             <h1>
               {t.hero.name}
               <span className="tagline">{t.hero.tagline}</span>
