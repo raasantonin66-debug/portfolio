@@ -7,6 +7,7 @@ type Labels = {
   controlOff: string;
   hint: string;
   reset: string;
+  aria: string;
 };
 
 // Double pendule : lien 1 = bras (barre -> épaules), lien 2 = corps (épaules -> pieds).
@@ -244,7 +245,7 @@ export default function Pendulum({ labels }: { labels: Labels }) {
         className="sim-canvas"
         onPointerDown={perturb}
         role="img"
-        aria-label="Simulation d'un double pendule réalisant un soleil à la barre fixe"
+        aria-label={labels.aria}
       />
       <div className="sim-controls">
         <button

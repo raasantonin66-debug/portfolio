@@ -14,6 +14,30 @@ export type Project = {
 
 export const fr = {
   lang: "fr",
+  meta: {
+    title: "Antonin RAAS · Robotique et systèmes asservis",
+    description:
+      "Portfolio d'Antonin RAAS, étudiant ingénieur en robotique et systèmes embarqués à SeaTech Toulon, champion de France de gymnastique artistique.",
+  },
+  eyebrow: "SeaTech Toulon · Robotique & systèmes embarqués",
+  a11y: { nav: "Navigation principale", lang: "Langue" },
+  ui: {
+    home: "Accueil",
+    allProjects: "Voir tous les projets",
+    backToProjects: "Tous les projets",
+    nextProject: "Projet suivant",
+    localTime: "Heure locale",
+    letsWork: "Travaillons ensemble",
+    scroll: "Défiler",
+    menu: "Menu",
+    close: "Fermer",
+    featured: "Projet phare",
+    intro: "Ingénieur en devenir, gymnaste depuis toujours.",
+    projectsIntro: "Quatre projets, de la modélisation à la mise en œuvre.",
+    viewProject: "Voir le projet",
+    year: "Année",
+    role: "Cadre",
+  },
   nav: {
     projects: "Projets",
     skills: "Compétences",
@@ -38,6 +62,7 @@ export const fr = {
     controlOff: "Asservissement : coupé",
     hint: "Cliquez ou touchez le pendule pour le perturber.",
     reset: "Relancer",
+    aria: "Simulation d'un double pendule réalisant un soleil à la barre fixe",
     caption:
       "Simulation illustrative d'un double pendule (bras + corps) : un couple au niveau de la barre injecte l'énergie du soleil, un correcteur à la hanche garde le corps aligné. Coupez l'asservissement pour voir le chaos.",
   },
