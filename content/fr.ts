@@ -166,13 +166,13 @@ export const fr = {
   aboutTitle: "À propos",
   about: [
     "Je suis en deuxième année d'école d'ingénieur à SeaTech Toulon, spécialité robotique et systèmes embarqués. Ce qui me passionne : l'asservissement, et rendre les opérations automatisées plus efficaces.",
-    "Avant l'ingénierie, il y a eu la gymnastique artistique masculine. J'en ai fait pendant 18 ans, jusqu'au titre de champion de France. La gym m'a appris la précision, la patience et la répétition jusqu'au geste juste. C'est exactement ce que je cherche dans un système asservi.",
+    "Avant l'ingénierie, il y a eu la gymnastique artistique masculine. J'en ai fait pendant 18 ans, jusqu'aux titres de champion de France en individuel et par équipe. La gym m'a appris la précision, la patience et la répétition jusqu'au geste juste. C'est exactement ce que je cherche dans un système asservi.",
     "Récemment, j'ai découvert le rugby. Après un sport individuel, j'y apprends à jouer pour un collectif.",
     "Enfin, l'entrepreneuriat me motive : à terme, j'aimerais construire des projets avec d'autres, pas seulement y contribuer.",
   ],
   stats: [
     { value: "18 ans", label: "de gymnastique artistique" },
-    { value: "Champion", label: "de France" },
+    { value: "Champion", label: "de France, en individuel et par équipe" },
     { value: "4", label: "projets d'ingénierie" },
     { value: "3", label: "langues" },
   ],
@@ -180,8 +180,8 @@ export const fr = {
   contactText: "Un stage, un projet, une idée à construire ensemble ? Écrivez-moi.",
   // À compléter : laisser vide masque le lien.
   links: {
-    email: "",
-    linkedin: "",
+    email: "raas.antonin66@gmail.com",
+    linkedin: "https://www.linkedin.com/in/antonin-raas-05b731386",
     github: "",
   },
   footer: "Site conçu et développé par Antonin RAAS.",
