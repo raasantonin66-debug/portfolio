@@ -20,6 +20,16 @@ export default async function About({ params }: { params: Promise<{ lang: string
         </h1>
       </section>
 
+      <section className="section about-photo">
+        <Reveal>
+          <figure>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={t.aboutPhoto.src} width={t.aboutPhoto.w} height={t.aboutPhoto.h} alt={t.aboutPhoto.caption} />
+            <figcaption>{t.aboutPhoto.caption}</figcaption>
+          </figure>
+        </Reveal>
+      </section>
+
       <section className="section about">
         <Reveal className="about-text">
           {t.about.map((para, i) => (
