@@ -82,7 +82,7 @@ export default function Header({ t }: { t: Dict }) {
         <p className="menu-title">{t.a11y.nav}</p>
         <nav>
           {[{ href: base, label: t.ui.home }, ...links].map((l) => (
-            <TLink key={l.href} href={l.href} label={l.label} tabIndex={open ? 0 : -1}>
+            <TLink key={l.href} href={l.href} label={l.label} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>
               {l.label}
             </TLink>
           ))}
