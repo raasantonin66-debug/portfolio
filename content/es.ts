@@ -41,19 +41,8 @@ export const es: Dict = {
     ctaProjects: "Ver mis proyectos",
     ctaContact: "Contactarme",
     ctaCv: "Descargar mi CV",
-    story:
-      "Durante 18 años hice girar mi cuerpo alrededor de una barra. En mi proyecto de investigación aprendí a hacer girar un robot de la misma manera. Empuja el péndulo: el control lo devuelve a su trayectoria.",
     banner:
       "Busco unas prácticas de ingeniería de 2.º año en el extranjero, de mayo a agosto de 2027, en España.",
-  },
-  sim: {
-    controlOn: "Control: activado",
-    controlOff: "Control: desactivado",
-    hint: "Haz clic o toca el péndulo para perturbarlo.",
-    reset: "Reiniciar",
-    aria: "Simulación de un péndulo doble realizando un molino en la barra fija",
-    caption:
-      "Simulación ilustrativa de un péndulo doble (brazos + cuerpo): un par en la barra aporta la energía del molino y un controlador en la cadera mantiene el cuerpo alineado. Desactiva el control para ver el caos.",
   },
   projectsTitle: "Proyectos",
   projects: [
