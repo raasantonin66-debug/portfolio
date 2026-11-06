@@ -41,19 +41,8 @@ export const en: Dict = {
     ctaProjects: "See my projects",
     ctaContact: "Contact me",
     ctaCv: "Download my CV",
-    story:
-      "For 18 years, I swung my body around a bar. For my research project, I learned to make a robot do the same. Push the pendulum: the controller brings it back on track.",
     banner:
       "Looking for a 2nd-year engineering internship abroad, May to August 2027, in Spain.",
-  },
-  sim: {
-    controlOn: "Control: on",
-    controlOff: "Control: off",
-    hint: "Click or tap the pendulum to disturb it.",
-    reset: "Restart",
-    aria: "Simulation of a double pendulum performing a giant swing on the high bar",
-    caption:
-      "Illustrative simulation of a double pendulum (arms + body): a torque at the bar pumps in the energy of the giant swing, and a hip controller keeps the body straight. Turn the control off to watch chaos take over.",
   },
   projectsTitle: "Projects",
   projects: [

@@ -62,19 +62,8 @@ export const fr = {
     ctaProjects: "Voir mes projets",
     ctaContact: "Me contacter",
     ctaCv: "Télécharger mon CV",
-    story:
-      "Pendant 18 ans, j'ai fait tourner mon corps autour d'une barre. En TIPE, j'ai appris à faire tourner un robot de la même façon. Poussez le pendule : l'asservissement le ramène sur sa trajectoire.",
     banner:
       "En recherche d'un stage ingénieur de 2e année à l'étranger, de mai à août 2027, en Espagne.",
-  },
-  sim: {
-    controlOn: "Asservissement : activé",
-    controlOff: "Asservissement : coupé",
-    hint: "Cliquez ou touchez le pendule pour le perturber.",
-    reset: "Relancer",
-    aria: "Simulation d'un double pendule réalisant un soleil à la barre fixe",
-    caption:
-      "Simulation illustrative d'un double pendule (bras + corps) : un couple au niveau de la barre injecte l'énergie du soleil, un correcteur à la hanche garde le corps aligné. Coupez l'asservissement pour voir le chaos.",
   },
   projectsTitle: "Projets",
   projects: [
