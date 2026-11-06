@@ -37,7 +37,7 @@ export const en: Dict = {
     name: "Antonin RAAS",
     tagline: "From giant swings on the high bar to control systems.",
     subtitle:
-      "Robotics and embedded systems engineering student at SeaTech Toulon. As a French champion in artistic gymnastics, I bring the same precision to controlling a robot as to controlling a movement.",
+      "Robotics engineering student at SeaTech Toulon and French gymnastics champion. I look for the same precision in a robot as in a movement.",
     ctaProjects: "See my projects",
     ctaContact: "Contact me",
     ctaCv: "Download my CV",
@@ -62,6 +62,25 @@ export const en: Dict = {
       title: "The robotic giant swing: controlling a double pendulum",
       meta: "Research project (TIPE) · flagship · solo · 2023",
       featured: true,
+      cover: "/media/double-pendule-poster.webp",
+      feature: {
+        kicker: "The gymnastics behind it",
+        title: "The giant swing, the core move of the high bar",
+        text: [
+          "The giant swing (\"soleil\" in French, the sun) is the foundation of the high bar: the gymnast rotates a full 360° around the bar, arms straight and body tight, circle after circle. It builds the momentum for almost every release and dismount.",
+          "Simply falling is not enough: on each circle, the friction of the hands on the bar and air resistance drain energy. To make up for it, the gymnast acts as they pass under the bar. They arch slightly on the way down, then \"kick\" by closing the shoulders and hips on the way up. Their centre of mass moves closer to the bar, the rotation speeds up and they pass over the top in a smooth handstand.",
+          "Biomechanics research by Yeadon and Hiley (Loughborough University) models the gymnast as a chain of linked segments and shows that these well-timed shoulder and hip actions are what keep the giant swing going.",
+          "My prototype follows the same idea: one segment plays the arms, a second one the body, and a motor replaces the muscles. The controller has to apply the right torque at the right moment, exactly like a gymnast timing the kick.",
+        ],
+        video: {
+          src: "/media/double-pendule.mp4",
+          poster: "/media/double-pendule-poster.webp",
+          w: 720,
+          h: 1280,
+          caption: "The prototype under test: a double pendulum on a frame, driven by an Arduino board and rotary encoders.",
+        },
+        source: { label: "Source: Yeadon & Hiley (2000), The mechanics of the backward giant circle on the high bar", url: "https://www.lboro.ac.uk/microsites/ssehs/biomechanics/research-biomech/papers/hibarmech00.pdf" },
+      },
       blocks: [
         {
           label: "The idea",
@@ -87,25 +106,46 @@ export const en: Dict = {
     },
     {
       slug: "chauffage-inertie",
-      title: "Controlled heating using thermal inertia",
+      title: "Vortex stove: controlled heating using thermal inertia",
       meta: "Research project (TIPE) · with Léo NAJAR · 2024",
+      cover: "/media/chauffage-poele.webp",
       blocks: [
         {
-          label: "The idea",
-          text: "Pyrolysis combustion heats a mass of concrete, which stores the energy and releases it over a long period.",
+          label: "The question",
+          text: "How do you design a heater that regulates the flow and spread of heat, to maximise thermal comfort while cutting energy losses?",
         },
         {
-          label: "How it works",
-          text: "A second network runs clean air through the concrete. The air picks up heat and then spreads it through the room.",
+          label: "State of the art",
+          text: "We compared five families of stoves: log, pellet, masonry, ducted and rocket. A masonry stove releases gentle heat for 12 to 24 hours, a rocket stove burns little wood with excellent efficiency. We combined the two.",
+        },
+        {
+          label: "The design",
+          text: "In an L-shaped steel firebox, the wood undergoes pyrolysis: it breaks down into charcoal and gases (CH₄, CO, H₂) that burn in turn. The firebox is cast in refractory mortar, which withstands up to 1800 °C (versus 400 to 500 °C for standard mortar) and stores the heat. A duct running through this mass warms the room air.",
+        },
+        {
+          label: "The model",
+          text: "A heat balance on a slice of duct gives the outlet air temperature: it approaches the concrete temperature exponentially as the duct gets longer. We used this model to size the heat exchanger.",
+        },
+        {
+          label: "The control loop",
+          text: "An Arduino Mega reads the exchanger and room temperatures with calibrated thermistors and compares them with the setpoint. Through a motor driver, it runs a 12 V fan whose speed is proportional to the gap between setpoint and room. Designed in Simulink, the program was fixed for an edge case where the room was already above the setpoint, then given a low-pass filter against sensor noise.",
         },
         {
           label: "My role and the result",
-          text: "Modelling of the parts and the system, compared against the state of the art. Effective control, with a maximum temperature of 60 °C that kept the user thermally comfortable over a wide range.",
+          text: "Working in a pair, I modelled the parts and the system and led the comparison with existing stoves. A first outdoor test never reached the setpoint; the second one did. Every requirement was met, with a maximum temperature of 60 °C that keeps the user comfortable over a wide range.",
         },
+      ],
+      gallery: [
+        { src: "/media/chauffage-poele.webp", w: 768, h: 1024, caption: "The finished stove: steel firebox cast in refractory mortar" },
+        { src: "/media/chauffage-cao.webp", w: 768, h: 1304, caption: "3D model: L-shaped steel firebox and refractory mortar mass" },
+        { src: "/media/chauffage-chaines.webp", w: 1237, h: 646, caption: "Information and energy chains of the control system" },
+        { src: "/media/chauffage-banc.webp", w: 1600, h: 1200, caption: "Test bench: Arduino, motor driver, fan and power supply" },
+        { src: "/media/chauffage-essai.webp", w: 1797, h: 977, caption: "Real test: temperatures over the heating run" },
       ],
     },
     {
       slug: "littobs",
+      cover: "/media/littobs-prototype.webp",
       title: "Littobs: citizen science at SeaTech",
       meta: "Project manager · 2025 · team of about twelve",
       blocks: [
@@ -165,6 +205,7 @@ export const en: Dict = {
     "Recently, I discovered rugby. After an individual sport, I am learning to play for a team.",
     "Finally, entrepreneurship motivates me: in the long run, I want to build projects with others, not just contribute to them.",
   ],
+  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Portrait of Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "With my artistic gymnastics team" },
   stats: [
     { value: "18 years", label: "of artistic gymnastics" },

@@ -646,13 +646,17 @@ h3 {
   text-decoration: none;
   transition: padding 0.45s var(--ease), opacity 0.3s;
 }
-.plist:hover .prow {
-  opacity: 0.4;
-}
-.plist .prow:hover {
-  opacity: 1;
-  padding-left: 32px;
-  padding-right: 32px;
+/* Mise en avant au survol : uniquement avec une vraie souris (sinon le « :hover »
+   reste collé après un toucher et un projet paraît sélectionné). */
+@media (hover: hover) and (pointer: fine) {
+  .plist:hover .prow {
+    opacity: 0.4;
+  }
+  .plist .prow:hover {
+    opacity: 1;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 .prow-num {
   font-family: var(--mono);
@@ -1238,5 +1242,186 @@ figcaption {
 @media (min-width: 901px) {
   .gallery .gitem-wide:last-child {
     grid-column: 1 / -1;
+  }
+}
+
+/* ============ Aperçus avec image ============ */
+.ppreview-slide,
+.prow-thumb {
+  position: relative;
+  overflow: hidden;
+}
+.ppreview-slide img,
+.prow-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ppreview-slide:has(img)::after,
+.prow-thumb:has(img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 16, 31, 0.85), rgba(6, 16, 31, 0) 55%),
+    linear-gradient(to bottom, rgba(6, 16, 31, 0.45), rgba(6, 16, 31, 0) 30%);
+}
+.ppreview-slide > span,
+.prow-thumb > span {
+  position: relative;
+  z-index: 1;
+}
+.ppreview-slide:has(img),
+.prow-thumb:has(img) {
+  color: #fff;
+}
+.prow-thumb {
+  display: none;
+}
+
+/* Mobile et écrans tactiles : les quatre projets ont chacun leur aperçu, à égalité. */
+@media (max-width: 900px), (hover: none) {
+  .ppreview {
+    display: none;
+  }
+  .plist {
+    border-top: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .prow {
+    grid-template-columns: 36px 1fr;
+    padding: 0 0 18px;
+    gap: 6px 10px;
+    border-bottom: 0;
+    opacity: 1;
+  }
+  .prow-thumb {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 4 / 3;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    color: #06101f;
+  }
+  .prow-thumb .ppreview-name {
+    font-size: 1.4rem;
+  }
+  .prow-title {
+    font-size: 1.15rem;
+  }
+  .prow-meta {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+/* ============ Accueil épuré ============ */
+.intro-compact {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+.intro-compact .round-wrap {
+  margin-top: 0;
+}
+.intro-compact .statement {
+  margin: 0;
+  max-width: 30ch;
+}
+.intro-portrait {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 1px solid var(--line);
+  box-shadow: 0 0 40px rgba(76, 201, 240, 0.25);
+}
+@media (max-width: 900px) {
+  .intro-block {
+    padding-top: 60px;
+  }
+  .intro-compact {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 24px;
+  }
+  .intro-portrait {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* ============ Portrait (À propos) ============ */
+.about-portrait {
+  display: block;
+  width: min(320px, 70%);
+  height: auto;
+  margin: 0 0 32px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(76, 201, 240, 0.15);
+}
+
+/* ============ Section mise en avant (texte + vidéo) ============ */
+.feature {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.feature h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin: 10px 0 22px;
+  letter-spacing: -0.01em;
+}
+.feature-text p {
+  color: var(--soft);
+  margin: 0 0 18px;
+  max-width: 62ch;
+}
+.feature-text .section-kicker {
+  color: var(--c1);
+}
+.feature-source a {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.feature-media {
+  margin: 0;
+  position: sticky;
+  top: 110px;
+}
+.feature-media video {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  background: #000;
+  border: 1px solid var(--line);
+}
+.feature-media figcaption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--soft);
+}
+@media (max-width: 900px) {
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .feature-media {
+    position: static;
+    max-width: 420px;
   }
 }

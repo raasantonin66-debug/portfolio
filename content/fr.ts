@@ -10,6 +10,16 @@ export type Project = {
   status?: string;
   blocks: { label: string; text: string }[];
   gallery?: { src: string; w: number; h: number; caption: string }[];
+  // Image affichée dans l'aperçu de la liste (survol sur ordinateur, vignette sur mobile).
+  cover?: string;
+  // Section mise en avant : texte + vidéo (ex. le soleil pour le double pendule).
+  feature?: {
+    kicker: string;
+    title: string;
+    text: string[];
+    video: { src: string; poster: string; w: number; h: number; caption: string };
+    source?: { label: string; url: string };
+  };
 };
 
 export const fr = {
@@ -48,7 +58,7 @@ export const fr = {
     name: "Antonin RAAS",
     tagline: "Du soleil à la barre fixe aux systèmes asservis.",
     subtitle:
-      "Étudiant ingénieur en robotique et systèmes embarqués à SeaTech Toulon. Champion de France de gymnastique artistique, je mets la même exigence dans le contrôle d'un robot que dans celui d'un mouvement.",
+      "Élève-ingénieur en robotique à SeaTech Toulon et champion de France de gymnastique. Je cherche la même précision dans un robot que dans un mouvement.",
     ctaProjects: "Voir mes projets",
     ctaContact: "Me contacter",
     ctaCv: "Télécharger mon CV",
@@ -73,6 +83,25 @@ export const fr = {
       title: "Le soleil robotisé : asservissement d'un double pendule",
       meta: "TIPE · projet phare · seul · 2023",
       featured: true,
+      cover: "/media/double-pendule-poster.webp",
+      feature: {
+        kicker: "Le contexte gymnique",
+        title: "Le soleil, le grand tour de la barre fixe",
+        text: [
+          "Le soleil est l'élément fondateur de la barre fixe : le gymnaste tourne à 360° autour de la barre, bras tendus et corps gainé, tour après tour. C'est lui qui donne l'élan de presque tous les lâchers et de toutes les sorties.",
+          "Se laisser tomber ne suffit pas : à chaque tour, le frottement des mains sur la barre et la résistance de l'air font perdre de l'énergie. Pour la compenser, le gymnaste agit au passage sous la barre. Il se cambre légèrement dans la descente, puis « fouette » en fermant les épaules et les hanches dans la montée. Son centre de masse se rapproche de la barre, sa rotation accélère et il repasse à l'appui renversé sans à-coup.",
+          "Les travaux de biomécanique de Yeadon et Hiley (Loughborough University) modélisent le gymnaste comme une chaîne de segments articulés et montrent que ce sont ces actions d'épaules et de hanches, bien synchronisées, qui entretiennent le soleil.",
+          "Mon prototype reprend ce schéma : un premier segment joue les bras, un second le corps, et un moteur remplace les muscles. L'asservissement doit appliquer le bon couple au bon moment, exactement comme le gymnaste place son fouetté.",
+        ],
+        video: {
+          src: "/media/double-pendule.mp4",
+          poster: "/media/double-pendule-poster.webp",
+          w: 720,
+          h: 1280,
+          caption: "Le prototype en essai : double pendule monté sur portique, piloté par une carte Arduino et des encodeurs rotatifs.",
+        },
+        source: { label: "Source : Yeadon et Hiley (2000), The mechanics of the backward giant circle on the high bar", url: "https://www.lboro.ac.uk/microsites/ssehs/biomechanics/research-biomech/papers/hibarmech00.pdf" },
+      },
       blocks: [
         {
           label: "L'idée",
@@ -98,25 +127,46 @@ export const fr = {
     },
     {
       slug: "chauffage-inertie",
-      title: "Chauffage asservi à inertie thermique",
+      title: "Poêle à vortex : chauffage asservi à inertie thermique",
       meta: "TIPE · binôme avec Léo NAJAR · 2024",
+      cover: "/media/chauffage-poele.webp",
       blocks: [
         {
-          label: "L'idée",
-          text: "Une combustion par pyrolyse chauffe une masse de béton, qui stocke l'énergie et la restitue sur une longue durée.",
+          label: "La problématique",
+          text: "Comment concevoir un chauffage qui régule le débit et la diffusion de la chaleur, pour optimiser le confort thermique tout en limitant les pertes d'énergie ?",
         },
         {
-          label: "Le principe",
-          text: "Un second réseau fait circuler de l'air propre dans le béton. L'air se charge en chaleur puis la diffuse dans la pièce.",
+          label: "L'état de l'art",
+          text: "Nous avons comparé cinq familles de poêles : à bûches, à granulés, de masse, canalisable et rocket. Le poêle de masse diffuse une chaleur douce pendant 12 à 24 h, le rocket brûle peu de bois avec un excellent rendement. Nous avons combiné les deux.",
+        },
+        {
+          label: "La conception",
+          text: "Dans un foyer en acier en forme de L, le bois subit une pyrolyse : il se décompose en charbon et en gaz (CH₄, CO, H₂) qui brûlent à leur tour. Le foyer est noyé dans du mortier réfractaire, qui tient jusqu'à 1800 °C (contre 400 à 500 °C pour un mortier classique) et stocke la chaleur. Une conduite qui traverse cette masse réchauffe l'air de la pièce.",
+        },
+        {
+          label: "La modélisation",
+          text: "Un bilan thermique sur une tranche de conduite donne la température de l'air en sortie : elle tend exponentiellement vers celle du béton à mesure que la conduite s'allonge. Ce modèle nous a servi à dimensionner l'échangeur.",
+        },
+        {
+          label: "L'asservissement",
+          text: "Une carte Arduino Mega lit les températures de l'échangeur et de la pièce avec des thermistances étalonnées, et les compare à la consigne. Elle pilote, via un hacheur, un ventilateur 12 V dont la vitesse est proportionnelle à l'écart entre la consigne et la pièce. Conçu sous Simulink, le programme a été corrigé pour un cas limite où la pièce dépassait déjà la consigne, puis complété d'un filtre passe-bas contre le bruit des mesures.",
         },
         {
           label: "Mon rôle et le résultat",
-          text: "Modélisation des pièces et du système, comparaison avec un état de l'art. Asservissement efficace, avec une température maximale de 60 °C qui garantissait un confort thermique sur une large plage pour l'utilisateur.",
+          text: "En binôme, j'ai modélisé les pièces et le système et mené la comparaison avec l'état de l'art. Un premier essai en extérieur n'a jamais atteint la consigne, le second l'a atteinte. Tous les points du cahier des charges sont validés, avec une température maximale de 60 °C qui garantit un confort thermique sur une large plage.",
         },
+      ],
+      gallery: [
+        { src: "/media/chauffage-poele.webp", w: 768, h: 1024, caption: "Le poêle terminé : foyer en acier noyé dans le mortier réfractaire" },
+        { src: "/media/chauffage-cao.webp", w: 768, h: 1304, caption: "Modèle 3D : foyer en L en acier et masse de mortier réfractaire" },
+        { src: "/media/chauffage-chaines.webp", w: 1237, h: 646, caption: "Chaîne d'information et chaîne d'énergie de l'asservissement" },
+        { src: "/media/chauffage-banc.webp", w: 1600, h: 1200, caption: "Banc de test : Arduino, hacheur, ventilateur et alimentation" },
+        { src: "/media/chauffage-essai.webp", w: 1797, h: 977, caption: "Essai réel : évolution des températures pendant la chauffe" },
       ],
     },
     {
       slug: "littobs",
+      cover: "/media/littobs-prototype.webp",
       title: "Littobs : sciences participatives à SeaTech",
       meta: "Gestionnaire de projet · 2025 · équipe d'une douzaine de personnes",
       blocks: [
@@ -176,6 +226,7 @@ export const fr = {
     "Récemment, j'ai découvert le rugby. Après un sport individuel, j'y apprends à jouer pour un collectif.",
     "Enfin, l'entrepreneuriat me motive : à terme, j'aimerais construire des projets avec d'autres, pas seulement y contribuer.",
   ],
+  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Portrait d'Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Avec mon équipe de gymnastique artistique" },
   stats: [
     { value: "18 ans", label: "de gymnastique artistique" },
