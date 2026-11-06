@@ -63,6 +63,41 @@ export default async function ProjectPage({ params }: P) {
         ))}
       </section>
 
+      {p.feature && (
+        <section className="section feature">
+          <div className="feature-text">
+            <p className="section-kicker">{p.feature.kicker}</p>
+            <h2>{p.feature.title}</h2>
+            {p.feature.text.map((para, k) => (
+              <p key={k}>{para}</p>
+            ))}
+            {p.feature.source && (
+              <p className="feature-source">
+                <a href={p.feature.source.url} target="_blank" rel="noopener noreferrer">
+                  {p.feature.source.label} ↗
+                </a>
+              </p>
+            )}
+          </div>
+          <figure className="feature-media">
+            <video
+              src={p.feature.video.src}
+              poster={p.feature.video.poster}
+              width={p.feature.video.w}
+              height={p.feature.video.h}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              aria-label={p.feature.video.caption}
+            />
+            <figcaption>{p.feature.video.caption}</figcaption>
+          </figure>
+        </section>
+      )}
+
       {p.gallery && p.gallery.length > 0 && (
         <section className="section">
           <Gallery items={p.gallery} closeLabel={t.ui.close} />

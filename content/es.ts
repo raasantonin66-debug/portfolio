@@ -37,7 +37,7 @@ export const es: Dict = {
     name: "Antonin RAAS",
     tagline: "De los molinos en la barra fija a los sistemas de control.",
     subtitle:
-      "Estudiante de ingeniería en robótica y sistemas embebidos en SeaTech Toulon. Campeón de Francia de gimnasia artística, pongo la misma exigencia en controlar un robot que en controlar un movimiento.",
+      "Estudiante de ingeniería en robótica en SeaTech Toulon y campeón de Francia de gimnasia. Busco la misma precisión en un robot que en un movimiento.",
     ctaProjects: "Ver mis proyectos",
     ctaContact: "Contactarme",
     ctaCv: "Descargar mi CV",
@@ -62,6 +62,25 @@ export const es: Dict = {
       title: "El molino robotizado: control de un péndulo doble",
       meta: "Proyecto de investigación (TIPE) · proyecto estrella · individual · 2023",
       featured: true,
+      cover: "/media/double-pendule-poster.webp",
+      feature: {
+        kicker: "El contexto gimnástico",
+        title: "El molino, el gran giro de la barra fija",
+        text: [
+          "El molino (gigante, \"soleil\" en francés) es el elemento base de la barra fija: el gimnasta gira 360° alrededor de la barra, con los brazos estirados y el cuerpo firme, vuelta tras vuelta. Es el que da impulso a casi todas las sueltas y salidas.",
+          "Dejarse caer no basta: en cada vuelta, el roce de las manos con la barra y la resistencia del aire hacen perder energía. Para compensarla, el gimnasta actúa al pasar bajo la barra. Se arquea un poco en la bajada y luego da un \"latigazo\" cerrando hombros y caderas en la subida. Su centro de masa se acerca a la barra, la rotación se acelera y vuelve a pasar por el pino sin brusquedad.",
+          "Los trabajos de biomecánica de Yeadon y Hiley (Loughborough University) modelan al gimnasta como una cadena de segmentos articulados y muestran que son esas acciones de hombros y caderas, bien sincronizadas, las que mantienen el molino.",
+          "Mi prototipo sigue el mismo esquema: un primer segmento hace de brazos, un segundo de cuerpo, y un motor sustituye a los músculos. El control debe aplicar el par adecuado en el momento justo, igual que el gimnasta coloca su latigazo.",
+        ],
+        video: {
+          src: "/media/double-pendule.mp4",
+          poster: "/media/double-pendule-poster.webp",
+          w: 720,
+          h: 1280,
+          caption: "El prototipo en prueba: doble péndulo montado en un pórtico, controlado por una placa Arduino y codificadores rotativos.",
+        },
+        source: { label: "Fuente: Yeadon y Hiley (2000), The mechanics of the backward giant circle on the high bar", url: "https://www.lboro.ac.uk/microsites/ssehs/biomechanics/research-biomech/papers/hibarmech00.pdf" },
+      },
       blocks: [
         {
           label: "La idea",
@@ -87,25 +106,46 @@ export const es: Dict = {
     },
     {
       slug: "chauffage-inertie",
-      title: "Calefacción controlada por inercia térmica",
+      title: "Estufa de vórtice: calefacción controlada por inercia térmica",
       meta: "Proyecto de investigación (TIPE) · con Léo NAJAR · 2024",
+      cover: "/media/chauffage-poele.webp",
       blocks: [
         {
-          label: "La idea",
-          text: "Una combustión por pirólisis calienta una masa de hormigón, que almacena la energía y la libera durante mucho tiempo.",
+          label: "La pregunta",
+          text: "¿Cómo diseñar una calefacción que regule el caudal y la difusión del calor, para optimizar el confort térmico y reducir las pérdidas de energía?",
         },
         {
-          label: "El principio",
-          text: "Una segunda red hace circular aire limpio por el hormigón. El aire se carga de calor y lo reparte por la habitación.",
+          label: "El estado del arte",
+          text: "Comparamos cinco familias de estufas: de leña, de pellets, de acumulación, canalizable y rocket. La de acumulación difunde un calor suave durante 12 a 24 h, la rocket quema poca leña con un rendimiento excelente. Combinamos las dos.",
+        },
+        {
+          label: "El diseño",
+          text: "En un hogar de acero en forma de L, la leña sufre una pirólisis: se descompone en carbón y gases (CH₄, CO, H₂) que arden a su vez. El hogar está embebido en mortero refractario, que aguanta hasta 1800 °C (frente a 400–500 °C de un mortero clásico) y almacena el calor. Un conducto que atraviesa esa masa calienta el aire de la habitación.",
+        },
+        {
+          label: "El modelo",
+          text: "Un balance térmico sobre un tramo de conducto da la temperatura del aire a la salida: tiende exponencialmente a la del hormigón a medida que el conducto se alarga. Este modelo nos sirvió para dimensionar el intercambiador.",
+        },
+        {
+          label: "El control",
+          text: "Una placa Arduino Mega lee las temperaturas del intercambiador y de la habitación con termistores calibrados y las compara con la consigna. A través de un chopper, acciona un ventilador de 12 V cuya velocidad es proporcional a la diferencia entre consigna y habitación. Diseñado en Simulink, el programa se corrigió para un caso límite en el que la habitación ya superaba la consigna, y se completó con un filtro paso bajo contra el ruido de las medidas.",
         },
         {
           label: "Mi papel y el resultado",
-          text: "Modelado de las piezas y del sistema, comparado con el estado del arte. Control eficaz, con una temperatura máxima de 60 °C que garantizaba el confort térmico del usuario en un amplio rango.",
+          text: "En pareja, modelé las piezas y el sistema y llevé la comparación con el estado del arte. Una primera prueba en exterior nunca alcanzó la consigna; la segunda sí. Se cumplieron todos los requisitos, con una temperatura máxima de 60 °C que garantiza el confort térmico en un amplio rango.",
         },
+      ],
+      gallery: [
+        { src: "/media/chauffage-poele.webp", w: 768, h: 1024, caption: "La estufa terminada: hogar de acero embebido en mortero refractario" },
+        { src: "/media/chauffage-cao.webp", w: 768, h: 1304, caption: "Modelo 3D: hogar de acero en L y masa de mortero refractario" },
+        { src: "/media/chauffage-chaines.webp", w: 1237, h: 646, caption: "Cadena de información y cadena de energía del control" },
+        { src: "/media/chauffage-banc.webp", w: 1600, h: 1200, caption: "Banco de pruebas: Arduino, chopper, ventilador y fuente de alimentación" },
+        { src: "/media/chauffage-essai.webp", w: 1797, h: 977, caption: "Prueba real: evolución de las temperaturas durante el calentamiento" },
       ],
     },
     {
       slug: "littobs",
+      cover: "/media/littobs-prototype.webp",
       title: "Littobs: ciencia ciudadana en SeaTech",
       meta: "Jefe de proyecto · 2025 · equipo de una docena de personas",
       blocks: [
@@ -165,6 +205,7 @@ export const es: Dict = {
     "Hace poco descubrí el rugby. Después de un deporte individual, aprendo a jugar para un equipo.",
     "Por último, me motiva el emprendimiento: a largo plazo quiero construir proyectos con otros, no solo contribuir a ellos.",
   ],
+  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Retrato de Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Con mi equipo de gimnasia artística" },
   stats: [
     { value: "18 años", label: "de gimnasia artística" },

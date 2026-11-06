@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     title: { default: t.meta.title, template: `%s · Antonin RAAS` },
     description: t.meta.description,
-    alternates: { languages: { fr: "/fr", en: "/en", es: "/es" } },
+    alternates: { languages: { en: "/en", fr: "/fr", es: "/es", "x-default": "/en" } },
   };
 }
 
@@ -44,7 +44,7 @@ export default async function RootLayout({
       <body>
         <Waves />
         <div className="grain" aria-hidden />
-        <TransitionProvider greetings={["Bonjour", "Hello", "Hola", "Antonin RAAS"]}>
+        <TransitionProvider greetings={["Hello", "Bonjour", "Hola", "Antonin RAAS"]}>
           <Header t={t} />
           <div className="page">
             <main>{children}</main>

@@ -34,17 +34,21 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </section>
 
       <section className="intro-block">
-        <div className="intro-grid">
-          <h2 className="statement">{t.hero.subtitle}</h2>
-          <div className="intro-side">
-            <p>{t.hero.story}</p>
-            <p className="sim-caption">{t.sim.caption}</p>
-            <Magnetic strength={0.4} className="round-wrap">
-              <TLink href={`${base}/about`} label={t.nav.about} className="round-btn">
-                {t.nav.about}
-              </TLink>
-            </Magnetic>
-          </div>
+        <div className="intro-compact">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="intro-portrait"
+            src={t.aboutPortrait.src}
+            width={t.aboutPortrait.w}
+            height={t.aboutPortrait.h}
+            alt={t.aboutPortrait.alt}
+          />
+          <p className="statement">{t.hero.subtitle}</p>
+          <Magnetic strength={0.4} className="round-wrap">
+            <TLink href={`${base}/about`} label={t.nav.about} className="round-btn">
+              {t.nav.about}
+            </TLink>
+          </Magnetic>
         </div>
       </section>
 

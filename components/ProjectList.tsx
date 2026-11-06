@@ -5,6 +5,7 @@ import type { Project } from "@/content/fr";
 import { TLink } from "./Transition";
 
 // Liste de projets en grandes lignes ; au survol, un aperçu coloré suit le curseur.
+// Sur écran tactile, chaque ligne affiche sa propre vignette (même aperçu, sans mise en avant).
 export default function ProjectList({
   projects,
   lang,
@@ -53,6 +54,16 @@ export default function ProjectList({
             onPointerEnter={() => setActive(i)}
             style={{ "--c1": c1, "--c2": c2 } as React.CSSProperties}
           >
+            <span
+              className="prow-thumb"
+              aria-hidden
+              style={{ background: `radial-gradient(circle at 30% 20%, ${c1}, ${c2} 70%)` }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              {p.cover && <img src={p.cover} alt="" loading="lazy" />}
+              <span className="ppreview-num">{String(i + 1).padStart(2, "0")}</span>
+              <span className="ppreview-name">{p.title.split(":")[0]}</span>
+            </span>
             <span className="prow-num">{String(i + 1).padStart(2, "0")}</span>
             <span className="prow-title">{p.title}</span>
             <span className="prow-meta">{year}</span>
@@ -72,6 +83,8 @@ export default function ProjectList({
                 className="ppreview-slide"
                 style={{ background: `radial-gradient(circle at 30% 20%, ${c1}, ${c2} 70%)` }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {p.cover && <img src={p.cover} alt="" />}
                 <span className="ppreview-num">{String(i + 1).padStart(2, "0")}</span>
                 <span className="ppreview-name">{p.title.split(":")[0]}</span>
               </div>
