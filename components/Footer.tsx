@@ -29,7 +29,8 @@ export default function Footer({ t }: { t: Dict }) {
       <div className="footer-inner">
         <h2 className="footer-title">
           <span className="footer-avatar" aria-hidden>
-            AR
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={t.aboutPortrait.src} alt="" loading="lazy" />
           </span>
           {t.ui.letsWork}
         </h2>
