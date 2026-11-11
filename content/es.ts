@@ -21,8 +21,8 @@ export const es: Dict = {
     menu: "Menú",
     close: "Cerrar",
     featured: "Proyecto estrella",
-    intro: "Ingeniero en formación, gimnasta de corazón.",
-    projectsIntro: "Cuatro proyectos, del modelado a la implementación.",
+    intro: "Ingeniero en formación, gimnasta de corazón",
+    projectsIntro: "Cuatro proyectos, del modelado a la implementación",
     viewProject: "Ver el proyecto",
     year: "Año",
     role: "Contexto",
@@ -35,7 +35,7 @@ export const es: Dict = {
   },
   hero: {
     name: "Antonin RAAS",
-    tagline: "De los molinos en la barra fija a los sistemas de control.",
+    tagline: "De los molinos en la barra fija a los sistemas de control",
     subtitle:
       "Estudiante de ingeniería en robótica en SeaTech Toulon y campeón de Francia de gimnasia. Busco la misma precisión en un robot que en un movimiento.",
     ctaProjects: "Ver mis proyectos",

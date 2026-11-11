@@ -2,12 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-// Fond animé : plusieurs ondes colorées qui traversent l'écran lentement.
-const LAYERS = [
-  { color: "76, 201, 240", amp: 38, len: 0.0024, speed: 0.22, y: 0.3, alpha: 0.2 },
-  { color: "155, 109, 255", amp: 52, len: 0.0017, speed: -0.15, y: 0.45, alpha: 0.18 },
-  { color: "242, 181, 68", amp: 30, len: 0.003, speed: 0.3, y: 0.62, alpha: 0.15 },
-  { color: "80, 209, 141", amp: 44, len: 0.002, speed: -0.2, y: 0.8, alpha: 0.13 },
+// Fond : deux traces fines qui ondulent lentement, comme sur un oscilloscope.
+// Une seule couleur, pas de remplissage : le fond reste calme sous le contenu.
+const TRACES = [
+  { amp: 34, len: 0.0021, speed: 0.12, y: 0.34, alpha: 0.3 },
+  { amp: 22, len: 0.0034, speed: -0.08, y: 0.72, alpha: 0.18 },
 ];
 
 export default function Waves() {
@@ -20,7 +19,6 @@ export default function Waves() {
     if (!ctx) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
-    let scrollY = window.scrollY;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -28,52 +26,29 @@ export default function Waves() {
       canvas.height = Math.round(window.innerHeight * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    const onScroll = () => {
-      scrollY = window.scrollY;
-    };
     resize();
     window.addEventListener("resize", resize);
-    window.addEventListener("scroll", onScroll, { passive: true });
 
     const draw = (time: number) => {
       const t = time / 1000;
       const w = window.innerWidth;
       const h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
-      LAYERS.forEach((L, i) => {
-        // Léger effet de parallaxe au défilement.
-        const base = h * L.y - scrollY * (0.04 + i * 0.02);
-        const y0 = ((base % h) + h) % h;
-        const grad = ctx.createLinearGradient(0, y0 - L.amp, 0, y0 + 220);
-        grad.addColorStop(0, `rgba(${L.color}, ${L.alpha})`);
-        grad.addColorStop(1, `rgba(${L.color}, 0)`);
-        ctx.fillStyle = grad;
+      ctx.lineWidth = 1.25;
+      for (const L of TRACES) {
+        ctx.strokeStyle = `rgba(76, 201, 240, ${L.alpha})`;
         ctx.beginPath();
-        ctx.moveTo(0, h);
-        for (let x = 0; x <= w + 10; x += 10) {
+        for (let x = 0; x <= w + 8; x += 8) {
+          // Réponse amortie qui se répète : un clin d'œil à l'asservissement.
           const y =
-            y0 +
-            Math.sin(x * L.len + t * L.speed * 2 * Math.PI * 0.3) * L.amp +
-            Math.sin(x * L.len * 2.3 - t * L.speed * 1.7) * L.amp * 0.35;
-          ctx.lineTo(x, y);
-        }
-        ctx.lineTo(w, h);
-        ctx.closePath();
-        ctx.fill();
-        // Crête lumineuse
-        ctx.strokeStyle = `rgba(${L.color}, ${L.alpha * 2.2})`;
-        ctx.lineWidth = 1.2;
-        ctx.beginPath();
-        for (let x = 0; x <= w + 10; x += 10) {
-          const y =
-            y0 +
-            Math.sin(x * L.len + t * L.speed * 2 * Math.PI * 0.3) * L.amp +
-            Math.sin(x * L.len * 2.3 - t * L.speed * 1.7) * L.amp * 0.35;
+            h * L.y +
+            Math.sin(x * L.len + t * L.speed * 2 * Math.PI) * L.amp +
+            Math.sin(x * L.len * 2.7 - t * L.speed * 3) * L.amp * 0.25;
           if (x === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
         ctx.stroke();
-      });
+      }
       if (!reduce) raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
@@ -81,7 +56,6 @@ export default function Waves() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 

@@ -5,7 +5,7 @@ import Gallery from "@/components/Gallery";
 import WordsReveal from "@/components/WordsReveal";
 import { TLink } from "@/components/Transition";
 import { fr } from "@/content/fr";
-import { getDict, locales, projectColors } from "@/content";
+import { getDict, locales } from "@/content";
 
 export const dynamicParams = false;
 
@@ -29,12 +29,10 @@ export default async function ProjectPage({ params }: P) {
   if (i < 0) notFound();
   const p = t.projects[i];
   const next = t.projects[(i + 1) % t.projects.length];
-  const [c1, c2] = projectColors[p.slug] ?? ["#4cc9f0", "#9b6dff"];
-  const [nc1, nc2] = projectColors[next.slug] ?? ["#4cc9f0", "#9b6dff"];
   const meta = p.meta.split("·").map((s) => s.trim());
 
   return (
-    <article style={{ "--c1": c1, "--c2": c2 } as React.CSSProperties}>
+    <article>
       <section className="page-head section">
         <TLink href={`/${lang}/projects`} label={t.nav.projects} className="back-link">
           ← {t.ui.backToProjects}
@@ -42,22 +40,10 @@ export default async function ProjectPage({ params }: P) {
         <h1 className="page-title project-title">
           <WordsReveal text={p.title} step={0.05} />
         </h1>
-        <div className="project-meta fade-in" style={{ animationDelay: "0.4s" }}>
-          {meta.map((m) => (
-            <span key={m}>{m}</span>
-          ))}
-        </div>
+        <p className="project-meta fade-in" style={{ animationDelay: "0.4s" }}>
+          {meta.join(" · ")}
+        </p>
       </section>
-
-      <div
-        className={`project-visual fade-in ${p.cover ? "has-cover" : ""}`}
-        style={{ animationDelay: "0.5s" }}
-        aria-hidden
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {p.cover && <img src={p.cover} alt="" />}
-        <span className="project-visual-num">{String(i + 1).padStart(2, "0")}</span>
-      </div>
 
       <section className="section project-body">
         {p.blocks.map((b, k) => (
@@ -117,7 +103,6 @@ export default async function ProjectPage({ params }: P) {
             href={`/${lang}/projects/${next.slug}`}
             label={next.title.split(":")[0]}
             className="next-link"
-            style={{ "--c1": nc1, "--c2": nc2 } as React.CSSProperties}
           >
             {next.title.replace(/ ([:;?!])/g, "\u00a0$1")}
           </TLink>

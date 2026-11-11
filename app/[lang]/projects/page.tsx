@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectList from "@/components/ProjectList";
 import WordsReveal from "@/components/WordsReveal";
-import { getDict, projectColors } from "@/content";
+import { getDict } from "@/content";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const t = getDict((await params).lang);
@@ -17,7 +17,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
       <h1 className="page-title">
         <WordsReveal text={t.ui.projectsIntro} step={0.06} />
       </h1>
-      <ProjectList projects={t.projects} lang={t.lang} colors={projectColors} viewLabel={t.ui.viewProject} />
+      <ProjectList projects={t.projects} lang={t.lang} />
     </section>
   );
 }
