@@ -31,7 +31,7 @@ export default async function About({ params }: { params: Promise<{ lang: string
       </section>
 
       <section className="section about">
-        <Reveal className="about-text">
+        <Reveal className="about-side">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="about-portrait"
@@ -40,18 +40,22 @@ export default async function About({ params }: { params: Promise<{ lang: string
             height={t.aboutPortrait.h}
             alt={t.aboutPortrait.alt}
           />
-          {t.about.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
         </Reveal>
-        <Reveal className="stats">
-          {t.stats.map((s) => (
-            <div className="stat" key={s.label}>
-              <strong>{s.value}</strong>
-              <span>{s.label}</span>
-            </div>
-          ))}
-        </Reveal>
+        <div className="about-main">
+          <Reveal className="about-text">
+            {t.about.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </Reveal>
+          <Reveal className="stats">
+            {t.stats.map((s) => (
+              <div className="stat" key={s.label}>
+                <strong>{s.value}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </section>
 
       <section className="section" id="competences">

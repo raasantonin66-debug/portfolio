@@ -12,7 +12,7 @@ export default function WordsReveal({
 }) {
   return (
     <>
-      {text.split(" ").map((w, i, all) => (
+      {text.replace(/ ([:;?!»])/g, "\u00a0$1").replace(/(«) /g, "$1\u00a0").split(" ").map((w, i, all) => (
         <Fragment key={i}>
           <span className="wr">
             <span className="wr-in" style={{ animationDelay: `${delay + i * step}s` }}>

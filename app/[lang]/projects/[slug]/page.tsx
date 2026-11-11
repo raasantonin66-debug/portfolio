@@ -49,7 +49,13 @@ export default async function ProjectPage({ params }: P) {
         </div>
       </section>
 
-      <div className="project-visual fade-in" style={{ animationDelay: "0.5s" }} aria-hidden>
+      <div
+        className={`project-visual fade-in ${p.cover ? "has-cover" : ""}`}
+        style={{ animationDelay: "0.5s" }}
+        aria-hidden
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {p.cover && <img src={p.cover} alt="" />}
         <span className="project-visual-num">{String(i + 1).padStart(2, "0")}</span>
       </div>
 
@@ -113,7 +119,7 @@ export default async function ProjectPage({ params }: P) {
             className="next-link"
             style={{ "--c1": nc1, "--c2": nc2 } as React.CSSProperties}
           >
-            {next.title}
+            {next.title.replace(/ ([:;?!])/g, "\u00a0$1")}
           </TLink>
         </Magnetic>
       </section>

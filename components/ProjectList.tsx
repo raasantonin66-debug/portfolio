@@ -65,8 +65,9 @@ export default function ProjectList({
               <span className="ppreview-name">{p.title.split(":")[0]}</span>
             </span>
             <span className="prow-num">{String(i + 1).padStart(2, "0")}</span>
-            <span className="prow-title">{p.title}</span>
+            <span className="prow-title">{p.title.replace(/ ([:;?!])/g, "\u00a0$1")}</span>
             <span className="prow-meta">{year}</span>
+            <span className="prow-arrow" aria-hidden>→</span>
           </TLink>
         );
       })}
