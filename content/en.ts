@@ -21,8 +21,8 @@ export const en: Dict = {
     menu: "Menu",
     close: "Close",
     featured: "Flagship project",
-    intro: "An engineer in the making, a gymnast at heart.",
-    projectsIntro: "Four projects, from modelling to implementation.",
+    intro: "An engineer in the making, a gymnast at heart",
+    projectsIntro: "Four projects, from modelling to implementation",
     viewProject: "View project",
     year: "Year",
     role: "Context",
@@ -35,7 +35,7 @@ export const en: Dict = {
   },
   hero: {
     name: "Antonin RAAS",
-    tagline: "From giant swings on the high bar to control systems.",
+    tagline: "From giant swings on the high bar to control systems",
     subtitle:
       "Robotics engineering student at SeaTech Toulon and French gymnastics champion. I look for the same precision in a robot as in a movement.",
     ctaProjects: "See my projects",

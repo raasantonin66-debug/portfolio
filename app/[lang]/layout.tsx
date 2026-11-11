@@ -43,7 +43,6 @@ export default async function RootLayout({
     <html lang={lang}>
       <body>
         <Waves />
-        <div className="grain" aria-hidden />
         <TransitionProvider greetings={["Hello", "Bonjour", "Hola", "Antonin RAAS"]}>
           <Header t={t} />
           <div className="page">

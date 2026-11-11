@@ -42,8 +42,8 @@ export const fr = {
     menu: "Menu",
     close: "Fermer",
     featured: "Projet phare",
-    intro: "Ingénieur en devenir, gymnaste depuis toujours.",
-    projectsIntro: "Quatre projets, de la modélisation à la mise en œuvre.",
+    intro: "Ingénieur en devenir, gymnaste depuis toujours",
+    projectsIntro: "Quatre projets, de la modélisation à la mise en œuvre",
     viewProject: "Voir le projet",
     year: "Année",
     role: "Cadre",
@@ -56,7 +56,7 @@ export const fr = {
   },
   hero: {
     name: "Antonin RAAS",
-    tagline: "Du soleil à la barre fixe aux systèmes asservis.",
+    tagline: "Du soleil à la barre fixe aux systèmes asservis",
     subtitle:
       "Élève-ingénieur en robotique à SeaTech Toulon et champion de France de gymnastique. Je cherche la même précision dans un robot que dans un mouvement.",
     ctaProjects: "Voir mes projets",

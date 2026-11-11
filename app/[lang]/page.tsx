@@ -3,7 +3,7 @@ import ProjectList from "@/components/ProjectList";
 import Magnetic from "@/components/Magnetic";
 import WordsReveal from "@/components/WordsReveal";
 import { TLink } from "@/components/Transition";
-import { getDict, projectColors } from "@/content";
+import { getDict } from "@/content";
 
 // Accueil : un « hôte d'accueil » simple qui présente Antonin et mène vers les projets.
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -37,7 +37,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </Magnetic>
           </div>
           <p className="banner fade-in" style={{ animationDelay: "0.8s" }}>
-            <span className="pulse" aria-hidden /> {t.hero.banner}
+            <span className="status-dot" aria-hidden /> {t.hero.banner}
           </p>
         </div>
         <figure className="hero-portrait fade-in" style={{ animationDelay: "0.3s" }}>
@@ -49,19 +49,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             alt={t.aboutPortrait.alt}
           />
         </figure>
-        <span className="scroll-cue" aria-hidden>
-          {t.ui.scroll} ↓
-        </span>
       </section>
 
       <section className="section">
         <p className="section-kicker">{t.ui.projectsIntro}</p>
-        <ProjectList
-          projects={t.projects}
-          lang={t.lang}
-          colors={projectColors}
-          viewLabel={t.ui.viewProject}
-        />
+        <ProjectList projects={t.projects} lang={t.lang} />
         <div className="center">
           <Magnetic strength={0.3}>
             <TLink href={`${base}/projects`} label={t.nav.projects} className="pill pill-lg">
