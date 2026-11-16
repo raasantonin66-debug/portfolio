@@ -194,7 +194,7 @@ export const es: Dict = {
     "Hace poco descubrí el rugby. Después de un deporte individual, aprendo a jugar para un equipo.",
     "Por último, me motiva el emprendimiento: a largo plazo quiero construir proyectos con otros, no solo contribuir a ellos.",
   ],
-  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Retrato de Antonin RAAS" },
+  aboutPortrait: { src: "/media/portrait-identite.webp", w: 1000, h: 1414, alt: "Retrato de Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Con mi equipo de gimnasia artística" },
   stats: [
     { value: "18 años", label: "de gimnasia artística" },
