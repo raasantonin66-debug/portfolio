@@ -194,7 +194,7 @@ export const en: Dict = {
     "Recently, I discovered rugby. After an individual sport, I am learning to play for a team.",
     "Finally, entrepreneurship motivates me: in the long run, I want to build projects with others, not just contribute to them.",
   ],
-  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Portrait of Antonin RAAS" },
+  aboutPortrait: { src: "/media/portrait-identite.webp", w: 1000, h: 1414, alt: "Portrait of Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "With my artistic gymnastics team" },
   stats: [
     { value: "18 years", label: "of artistic gymnastics" },

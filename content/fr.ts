@@ -215,7 +215,7 @@ export const fr = {
     "Récemment, j'ai découvert le rugby. Après un sport individuel, j'y apprends à jouer pour un collectif.",
     "Enfin, l'entrepreneuriat me motive : à terme, j'aimerais construire des projets avec d'autres, pas seulement y contribuer.",
   ],
-  aboutPortrait: { src: "/media/portrait.webp", w: 1000, h: 1499, alt: "Portrait d'Antonin RAAS" },
+  aboutPortrait: { src: "/media/portrait-identite.webp", w: 1000, h: 1414, alt: "Portrait d'Antonin RAAS" },
   aboutPhoto: { src: "/media/gym-equipe.webp", w: 2000, h: 1123, caption: "Avec mon équipe de gymnastique artistique" },
   stats: [
     { value: "18 ans", label: "de gymnastique artistique" },
