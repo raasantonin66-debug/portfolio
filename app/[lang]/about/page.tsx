@@ -15,7 +15,7 @@ export default async function About({ params }: { params: Promise<{ lang: string
   return (
     <>
       <section className="page-head section">
-        <h1 className="page-title">
+        <h1 className="display page-title">
           <WordsReveal text={t.ui.intro} step={0.06} />
         </h1>
       </section>
@@ -59,8 +59,8 @@ export default async function About({ params }: { params: Promise<{ lang: string
       </section>
 
       <section className="section" id="competences">
-        <Reveal>
-          <p className="section-kicker">{t.skillsTitle}</p>
+        <Reveal className="section-head">
+          <h2 className="display section-title">{t.skillsTitle}</h2>
         </Reveal>
         <div className="skills-rail">
           {t.skills.map((s, i) => (
@@ -76,8 +76,11 @@ export default async function About({ params }: { params: Promise<{ lang: string
             </Reveal>
           ))}
         </div>
-        <Reveal className="soft">
-          <h3>{t.softSkillsLabel}</h3>
+      </section>
+
+      <section className="statement soft">
+        <Reveal>
+          <h2 className="display statement-title">{t.softSkillsLabel}</h2>
           <p>{t.softSkills}</p>
         </Reveal>
       </section>

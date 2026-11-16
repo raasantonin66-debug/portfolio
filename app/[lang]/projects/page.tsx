@@ -14,10 +14,10 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
   if (!t) notFound();
   return (
     <section className="page-head section">
-      <h1 className="page-title">
+      <h1 className="display page-title">
         <WordsReveal text={t.ui.projectsIntro} step={0.06} />
       </h1>
-      <ProjectList projects={t.projects} lang={t.lang} />
+      <ProjectList projects={t.projects} lang={t.lang} viewLabel={t.ui.viewProject} />
     </section>
   );
 }
