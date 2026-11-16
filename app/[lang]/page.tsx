@@ -1,65 +1,111 @@
 import { notFound } from "next/navigation";
 import ProjectList from "@/components/ProjectList";
-import Magnetic from "@/components/Magnetic";
+import Reveal from "@/components/Reveal";
 import WordsReveal from "@/components/WordsReveal";
 import { TLink } from "@/components/Transition";
 import { getDict } from "@/content";
 
-// Accueil : un « hôte d'accueil » simple qui présente Antonin et mène vers les projets.
+// Accueil : un « hôte d'accueil » qui présente Antonin et mène vers les projets.
+// Mise en page : grand titre condensé, collage de deux photos, phrase-manifeste,
+// liste des projets, bandeau de disponibilité, bande d'images des projets.
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const t = getDict((await params).lang);
   if (!t) notFound();
   const base = `/${t.lang}`;
+
+  // Bande d'images : une ou deux images par projet, au cadrage d'origine.
+  const strip = t.projects.flatMap((p) => {
+    const imgs = [
+      ...(p.feature ? [{ src: p.feature.video.poster, w: p.feature.video.w, h: p.feature.video.h, caption: p.feature.video.caption }] : []),
+      ...(p.gallery ?? []).filter((g) => !g.src.endsWith(".svg")),
+    ].slice(0, 2);
+    return imgs.map((g) => ({ ...g, slug: p.slug, label: p.title.split(":")[0] }));
+  });
+
   return (
     <>
       <section className="hero">
-        <div className="hero-text">
-          <p className="eyebrow fade-in">{t.eyebrow}</p>
-          <h1 className="hero-name">
-            <WordsReveal text={t.hero.name} delay={0.15} step={0.12} />
+        <div className="hero-head">
+          <h1 className="display hero-name">
+            <WordsReveal text={t.hero.name} delay={0.1} step={0.1} />
           </h1>
-          <p className="tagline fade-in" style={{ animationDelay: "0.5s" }}>
-            {t.hero.tagline}
-          </p>
-          <p className="hero-sub fade-in" style={{ animationDelay: "0.6s" }}>
-            {t.hero.subtitle}
-          </p>
-          <div className="hero-ctas fade-in" style={{ animationDelay: "0.7s" }}>
-            <Magnetic strength={0.3}>
-              <TLink href={`${base}/projects`} label={t.nav.projects} className="pill pill-lg pill-solid">
+          <div className="hero-side fade-in" style={{ animationDelay: "0.4s" }}>
+            <p className="eyebrow">{t.eyebrow}</p>
+            <p className="hero-sub">{t.hero.subtitle}</p>
+            <div className="hero-ctas">
+              <TLink href={`${base}/projects`} label={t.nav.projects} className="btn btn-solid">
                 {t.hero.ctaProjects}
               </TLink>
-            </Magnetic>
-            <Magnetic strength={0.3}>
-              <TLink href={`${base}/contact`} label={t.nav.contact} className="pill pill-lg">
+              <TLink href={`${base}/contact`} label={t.nav.contact} className="btn">
                 {t.hero.ctaContact}
               </TLink>
-            </Magnetic>
+            </div>
           </div>
-          <p className="banner fade-in" style={{ animationDelay: "0.8s" }}>
-            <span className="status-dot" aria-hidden /> {t.hero.banner}
-          </p>
         </div>
-        <figure className="hero-portrait fade-in" style={{ animationDelay: "0.3s" }}>
+        <div className="collage fade-in" style={{ animationDelay: "0.25s" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            className="collage-a"
             src={t.aboutPortrait.src}
             width={t.aboutPortrait.w}
             height={t.aboutPortrait.h}
             alt={t.aboutPortrait.alt}
           />
-        </figure>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="collage-b"
+            src={t.aboutPhoto.src}
+            width={t.aboutPhoto.w}
+            height={t.aboutPhoto.h}
+            alt={t.aboutPhoto.caption}
+          />
+        </div>
+      </section>
+
+      <section className="statement">
+        <Reveal>
+          <h2 className="display statement-title">{t.hero.tagline}</h2>
+        </Reveal>
       </section>
 
       <section className="section">
-        <p className="section-kicker">{t.ui.projectsIntro}</p>
-        <ProjectList projects={t.projects} lang={t.lang} />
+        <Reveal className="section-head">
+          <h2 className="display section-title">{t.projectsTitle}</h2>
+          <p className="section-note">{t.ui.projectsIntro}</p>
+        </Reveal>
+        <ProjectList projects={t.projects} lang={t.lang} viewLabel={t.ui.viewProject} />
         <div className="center">
-          <Magnetic strength={0.3}>
-            <TLink href={`${base}/projects`} label={t.nav.projects} className="pill pill-lg">
-              {t.ui.allProjects} <sup>{t.projects.length}</sup>
+          <TLink href={`${base}/projects`} label={t.nav.projects} className="btn">
+            {t.ui.allProjects}
+          </TLink>
+        </div>
+      </section>
+
+      <section className="band">
+        <Reveal className="band-inner">
+          <p className="band-label">{t.ui.available}</p>
+          <p className="display band-quote">{t.hero.banner}</p>
+          <TLink href={`${base}/contact`} label={t.nav.contact} className="btn btn-dark">
+            {t.hero.ctaContact}
+          </TLink>
+        </Reveal>
+      </section>
+
+      <section className="strip" aria-label={t.ui.gallery}>
+        <div className="strip-track">
+          {[...strip, ...strip].map((g, i) => (
+            <TLink
+              key={i}
+              href={`${base}/projects/${g.slug}`}
+              label={g.label}
+              className="strip-item"
+              aria-hidden={i >= strip.length ? true : undefined}
+              tabIndex={i >= strip.length ? -1 : undefined}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={g.src} width={g.w} height={g.h} alt={i >= strip.length ? "" : g.caption} loading="lazy" />
             </TLink>
-          </Magnetic>
+          ))}
         </div>
       </section>
     </>

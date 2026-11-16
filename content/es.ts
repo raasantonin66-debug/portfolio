@@ -25,6 +25,9 @@ export const es: Dict = {
     projectsIntro: "Cuatro proyectos, del modelado a la implementación",
     viewProject: "Ver el proyecto",
     year: "Año",
+    available: "Disponibilidad",
+    pages: "Páginas",
+    gallery: "En imágenes",
     role: "Contexto",
   },
   nav: {

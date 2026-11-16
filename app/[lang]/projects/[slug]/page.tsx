@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Magnetic from "@/components/Magnetic";
 import Gallery from "@/components/Gallery";
 import WordsReveal from "@/components/WordsReveal";
 import { TLink } from "@/components/Transition";
@@ -37,7 +36,7 @@ export default async function ProjectPage({ params }: P) {
         <TLink href={`/${lang}/projects`} label={t.nav.projects} className="back-link">
           ← {t.ui.backToProjects}
         </TLink>
-        <h1 className="page-title project-title">
+        <h1 className="display page-title project-title">
           <WordsReveal text={p.title} step={0.05} />
         </h1>
         <p className="project-meta fade-in" style={{ animationDelay: "0.4s" }}>
@@ -59,7 +58,7 @@ export default async function ProjectPage({ params }: P) {
         <section className="section feature">
           <div className="feature-text">
             <p className="section-kicker">{p.feature.kicker}</p>
-            <h2>{p.feature.title}</h2>
+            <h2 className="display">{p.feature.title}</h2>
             {p.feature.text.map((para, k) => (
               <p key={k}>{para}</p>
             ))}
@@ -92,21 +91,20 @@ export default async function ProjectPage({ params }: P) {
 
       {p.gallery && p.gallery.length > 0 && (
         <section className="section">
+          <h2 className="display section-title gallery-title">{t.ui.gallery}</h2>
           <Gallery items={p.gallery} closeLabel={t.ui.close} />
         </section>
       )}
 
       <section className="section next-project">
         <p className="section-kicker">{t.ui.nextProject}</p>
-        <Magnetic strength={0.12}>
-          <TLink
+        <TLink
             href={`/${lang}/projects/${next.slug}`}
             label={next.title.split(":")[0]}
-            className="next-link"
+            className="display next-link"
           >
             {next.title.replace(/ ([:;?!])/g, "\u00a0$1")}
-          </TLink>
-        </Magnetic>
+        </TLink>
       </section>
     </article>
   );

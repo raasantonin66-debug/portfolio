@@ -46,6 +46,9 @@ export const fr = {
     projectsIntro: "Quatre projets, de la modélisation à la mise en œuvre",
     viewProject: "Voir le projet",
     year: "Année",
+    available: "Disponibilité",
+    pages: "Pages",
+    gallery: "En images",
     role: "Cadre",
   },
   nav: {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "@fontsource-variable/bricolage-grotesque/opsz.css";
-import "@fontsource-variable/jetbrains-mono";
+import "@fontsource/anton/latin-400.css";
+import "@fontsource/anton/latin-ext-400.css";
+import "@fontsource-variable/inter";
 import "../globals.css";
-import Waves from "@/components/Waves";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { TransitionProvider } from "@/components/Transition";
@@ -42,7 +42,6 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body>
-        <Waves />
         <TransitionProvider greetings={["Hello", "Bonjour", "Hola", "Antonin RAAS"]}>
           <Header t={t} />
           <div className="page">

@@ -25,6 +25,9 @@ export const en: Dict = {
     projectsIntro: "Four projects, from modelling to implementation",
     viewProject: "View project",
     year: "Year",
+    available: "Availability",
+    pages: "Pages",
+    gallery: "In pictures",
     role: "Context",
   },
   nav: {

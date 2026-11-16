@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import type { Dict } from "@/content/fr";
-import Magnetic from "./Magnetic";
 import { TLink } from "./Transition";
 
 function useToulonTime(lang: string) {
@@ -24,40 +23,37 @@ function useToulonTime(lang: string) {
 export default function Footer({ t }: { t: Dict }) {
   const time = useToulonTime(t.lang);
   const { links } = t;
+  const base = `/${t.lang}`;
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <h2 className="footer-title">
-          <span className="footer-avatar" aria-hidden>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={t.aboutPortrait.src} alt="" loading="lazy" />
-          </span>
-          {t.ui.letsWork}
-        </h2>
-        <div className="footer-line">
-          <Magnetic strength={0.45} className="footer-cta-wrap">
-            <TLink href={`/${t.lang}/contact`} label={t.nav.contact} className="footer-cta">
-              {t.nav.contact}
-            </TLink>
-          </Magnetic>
-        </div>
-        <div className="footer-pills">
-          {links.email && (
-            <Magnetic strength={0.2}>
-              <a className="pill" href={`mailto:${links.email}`}>
+        <div className="footer-cta">
+          <div>
+            <h2 className="display footer-title">{t.ui.letsWork}</h2>
+            <p className="footer-text">{t.contactText}</p>
+          </div>
+          <div className="footer-actions">
+            {links.email && (
+              <a className="footer-mail" href={`mailto:${links.email}`}>
                 {links.email}
               </a>
-            </Magnetic>
-          )}
-        </div>
-        <div className="footer-bottom">
-          <div>
-            <span className="footer-label">{t.ui.localTime}</span>
-            <span>
-              Toulon {time && `· ${time}`}
-            </span>
+            )}
+            <TLink href={`${base}/contact`} label={t.nav.contact} className="btn">
+              {t.hero.ctaContact}
+            </TLink>
           </div>
-          <div className="footer-socials">
+        </div>
+
+        <div className="footer-cols">
+          <div className="footer-col">
+            <h3 className="display">{t.ui.pages}</h3>
+            <TLink href={base} label={t.ui.home}>{t.ui.home}</TLink>
+            <TLink href={`${base}/projects`} label={t.nav.projects}>{t.nav.projects}</TLink>
+            <TLink href={`${base}/about`} label={t.nav.about}>{t.nav.about}</TLink>
+          </div>
+          <div className="footer-col">
+            <h3 className="display">{t.nav.contact}</h3>
+            {links.email && <a href={`mailto:${links.email}`}>{links.email}</a>}
             {links.linkedin && (
               <a href={links.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn
@@ -68,7 +64,13 @@ export default function Footer({ t }: { t: Dict }) {
                 GitHub
               </a>
             )}
-            <span>© {new Date().getFullYear()} Antonin RAAS</span>
+          </div>
+          <div className="footer-brand">
+            <span className="display">Antonin Raas</span>
+            <span>
+              {t.ui.localTime} · Toulon {time && `${time}`}
+            </span>
+            <span>© {new Date().getFullYear()}</span>
           </div>
         </div>
       </div>
