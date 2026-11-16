@@ -9,14 +9,17 @@
 :root {
   --bg: #000;
   --fg: #fff;
-  --soft: #cfcfcf;
-  --muted: #9a9a9a;
-  --line: rgba(255, 255, 255, 0.2);
-  --line-strong: rgba(255, 255, 255, 0.5);
-  --paper: #fff;
+  --soft: #d9d4cf;
+  --muted: #a89a90;
+  /* Sable : titres, nom, boutons et liens (relevé sur la référence) */
+  --sand: #e1ccbe;
+  --sand-soft: #d4c0b3;
+  --line: #4a433e;
+  --line-strong: #605751;
+  --paper: #e1ccbe;
   --ink: #0a0a0a;
-  --ink-soft: #3d3d3d;
-  --ink-line: rgba(0, 0, 0, 0.18);
+  --ink-soft: #4a3f38;
+  --ink-line: rgba(0, 0, 0, 0.22);
   --band: linear-gradient(100deg, #d8c45c 0%, #d2b88a 38%, #c4aba0 66%, #a9aca7 100%);
 
   --maxw: 1280px;
@@ -1065,7 +1068,7 @@ main:has(.contact-page) + .footer {
 }
 .footer-brand .display {
   font-size: 30px;
-  color: var(--fg);
+  color: var(--sand);
   margin-bottom: 10px;
 }
 
@@ -1267,4 +1270,62 @@ main:has(.contact-page) + .footer .footer-cta {
 }
 main:has(.contact-page) + .footer .footer-cols {
   padding-top: 0;
+}
+
+/* ============ Teinte sable (titres, nom, boutons, liens) ============ */
+.display,
+.brand,
+.prow-title,
+.pblock h2,
+.stat strong,
+.skill-card h3,
+.menu-panel nav a,
+.nav-links a,
+.footer-col a,
+.prow-link,
+.back-link,
+.feature-source a,
+.lang-active {
+  color: var(--sand);
+}
+.nav-links a {
+  color: var(--sand-soft);
+}
+.btn {
+  border-color: var(--sand);
+  color: var(--sand);
+}
+.btn:hover,
+.btn-solid {
+  background: var(--sand);
+  color: var(--bg);
+}
+.btn-solid:hover {
+  background: transparent;
+  color: var(--sand);
+}
+.burger::before,
+.burger::after {
+  background: var(--sand);
+}
+::selection {
+  background: var(--sand);
+  color: var(--bg);
+}
+/* Sur fond clair (bandeau dégradé, encart contact, rideau), le texte reste encre */
+.band .display,
+.contact-page .display,
+.contact-page .contact-value {
+  color: var(--ink);
+}
+.footer-mail {
+  background: #fff;
+}
+.btn-dark {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn-dark:hover {
+  background: var(--ink);
+  color: var(--sand);
 }
